@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href = "{{ url_for('static', filename = 'index.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/base-min.css">
+     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style type="text/css">
+        .button-style {
+            color: white;
+            border-radius: 30px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+            background: rgb(202, 60, 60);
+            font-size: 120%;
+
+        }
+
+        input[type="text"]::placeholder {
+                text-align: center;
+            }
+
+        input[type="text"]{
+            border: 1px solid whitesmoke;
+            border-radius:2px ;
+            background: black;
+            color: aliceblue;
+            display: block;
+            margin: 2% auto;
+            width: 80%;
+            height: 40px;
+            padding: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+         button{
+            display: block;
+            margin: 2% 40%;
+        }
+        #view_results{
+            display: block;
+            margin: 2% 35%;
+            background: darkslategrey;
+        }
+        .pure-u-1-3 {
+            margin-top: 10%;
+        }
+
+        .lds-hourglass {
+            margin-left: 42%;
+        }
+        #afterSub {
+            margin-top: 2%;
+        }
+
+        .break{
+            color: rgb(202, 60, 60);
+            margin-left: 50%;
+            margin-top: 7px;
+            font-size: 20px;
+        }
+
+        .small_result{
+            width: 33%;
+            margin-top: 3%;
+        }
+        
+        #title{
+            font-size: 35px;
+        }
+        #text{
+            font-size: 20px;
+        }
+
+        #result_print{
+            margin-right: 20px;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="pure-menu pure-menu-horizontal">
+    <a href="#" class="pure-menu-heading pure-menu-link">spam or ham </a>
+    <ul class="pure-menu-list">
+        <li class="pure-menu-item"><a href="/" class="pure-menu-link">Home</a> </li>
+        <li class="pure-menu-item"><a href="#" class="pure-menu-link">About Us</a> </li>
+        <li class="pure-menu-item"><a href="#" class="pure-menu-link">Contact us</a> </li>
+    </ul>
+</div>
+<div class="pure-g container">
+    <div class="pure-u-1-2" >
+        <img src="{{ url_for('static',filename="images/group1.png") }}">
+    </div>
+
+
+    <div class="pure-u-1-3" id="input_url">
+        <span class="TEXT"> <label>Want to know?<br>what's true? what's false?</label> </span>
+        <form method="GET" action="/result" class="">
+            <input type="text" placeholder="Enter news article's URL" name="url" required >
+            <div>
+                <button type="submit" class="button-style pure-button" onclick="process()" id="sub"> probe </button>
+                {% if flag %}
+                <a class ="button-style pure-button" href="#result_div" id="view_results">View result</a>
+                {% endif %}
+            </div>
+            <div id="afterSub" style="display: none">
+                <span class="TEXT">Hold on!</span>
+                <div class="lds-hourglass"></div>
+            </div>
+        </form>
+    </div>
+</div>
+{% if not(flag) %}
+
+{% else %}
+    <p class="break"> | </p>
+    <p class="break"> | </p>
+    <p class="break"> | </p>
+    <div id="result_div">
+    <div  class="pure-g result">
+    <div class="pure-u-1-1">
+        <div class="cards">
+            <div class="contain">
+            <div id="title" class="TEXT">
+                    {{ title }}</div><br><br>
+                <div id="text" class="TEXT">
+                    {{ text[:500] + '...' }}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class=" result" >
+    <div class="pure-u-1-3 small_result">
+        <div class="cards ">
+            <div class="contain text_result" > Probability<br>of being False <br> {{ probFalse }} </div>
+        </div>
+    </div>
+    <div class="pure-u-1-3 small_result" >
+        <div class="cards " id="result_print">
+            <div class="contain text_result" > Henceforth,<br>Article might be<br>{% if result %}<span style="font-size: 32px; color:#31ff00"> {{ result }} </span>{% else %}<span style="font-size: 32px; color:#ff4900"> {{ result }} </span>{% endif %}</div>
+        </div>
+    </div>
+    <div class="pure-u-1-3 small_result">
+        <div class="cards ">
+            <div class="contain text_result"> Probability<br>of being True <br> {{ probTrue }} </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </body>
+
+{% endif %}
+</body>
+<script type="text/javascript">
+    function process() {
+        document.getElementById("afterSub").style.display = "block";
+        document.getElementById("sub").style.display = "none";
+        document.getElementById("view_results").style.display = "none";
+        document.getElementById("result").style.display = "none";
+        sleep(2000)
+    }
+</script>
+</html>

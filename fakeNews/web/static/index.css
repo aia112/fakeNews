@@ -1,0 +1,102 @@
+body {
+    background: black;
+    font-family: 'Poppins', sans-serif;
+}
+html{
+  scroll-behavior: smooth;
+}
+.TEXT {
+    color: aliceblue;
+    font-size: x-large;
+    display: block;
+    text-align: center;
+}
+
+.container {
+    margin-top: 5%;
+}
+
+p{
+  color: white;
+}
+
+.result {
+  margin-left: 5% ;
+  margin-right: 5%;
+}
+
+#result_div{
+  margin-top: 7%;
+  margin-bottom: 10%;
+}
+
+.result_head{
+  font-size: xx-large;
+}
+
+.lds-hourglass {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+
+}
+.lds-hourglass:after {
+  content: " ";
+  display: block;
+  border-radius: 50%;
+  width: 0;
+  height: 0;
+  margin: 8px;
+  box-sizing: border-box;
+  border: 32px solid #fff;
+  border-color: #000 transparent #000 transparent;
+  animation: lds-hourglass 1.2s infinite;
+  background: red;
+
+}
+@keyframes lds-hourglass {
+  0% {
+    transform: rotate(0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    background: red;
+  }
+  50% {
+    transform: rotate(900deg);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    background: green;
+  }
+  100% {
+    transform: rotate(1800deg);
+      background: blue;
+  }
+}
+
+.cards {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  background: #111111;
+}
+
+.cards:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2)
+}
+
+.contain{
+  padding-top: 7%;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-bottom: 7%;
+}
+
+.small_result {
+  /*width: 20px;*/
+}
+
+
+.text_result{
+  color: aliceblue;
+  display: block;
+  text-align: center;
+  font-size: 28px;
+}
